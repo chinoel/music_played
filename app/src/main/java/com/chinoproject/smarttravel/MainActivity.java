@@ -7,6 +7,8 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.media.MediaDrm;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,10 +54,16 @@ public class MainActivity extends AppCompatActivity {
     TextView nowtime;
     TextView maxtime;
 
+    TextView Musicname;
+    TextView MusicArtist;
+    TextView MusicAll;
+
     String mut;
     String sec;
 
     ImageView play;
+
+    MediaMetadataRetriever source = new MediaMetadataRetriever();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
         nowtime = findViewById(R.id.nowtime);
         maxtime = findViewById(R.id.maxtime);
+
+        Musicname = findViewById(R.id.music_name);
+        MusicArtist = findViewById(R.id.music_artist);
+        MusicAll = findViewById(R.id.music_all);
 
         progress = findViewById(R.id.progress);
         progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -172,9 +184,19 @@ public class MainActivity extends AppCompatActivity {
                 mMediaPlayer.pause();
                 mMediaPlayer.reset();
                 String filepath = music.get(musiclist) + "";
+
+                source.setDataSource(filepath);
+                Musicname.setText(source.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
+                MusicArtist.setText(source.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+
+                String[] splits = filepath.split("/");
+                MusicAll.setText(splits[splits.length - 1]);
+
                 mMediaPlayer.setDataSource(filepath);
                 mMediaPlayer.prepare();
                 mMediaPlayer.start();
+
+
                 musiclist++;
                 play.setImageResource(R.drawable.btn_parse);
                 progress.setProgress(0);
@@ -203,6 +225,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String filepath = music.get(musiclist) + "";
                     mMediaPlayer.setDataSource(filepath);
+
+                    source.setDataSource(filepath);
+                    Musicname.setText(source.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
+                    MusicArtist.setText(source.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+
+                    String[] splits = filepath.split("/");
+                    MusicAll.setText(splits[splits.length - 1]);
+
                     mMediaPlayer.prepare();
                     mMediaPlayer.start();
                     musiclist++;

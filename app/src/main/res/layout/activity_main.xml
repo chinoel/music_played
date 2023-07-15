@@ -14,20 +14,29 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal" >
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        >
 
 
 
         <TextView
+            android:id="@+id/music_name"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="아니라고"/>
+            android:text="Music"/>
+        <TextView
+            android:id="@+id/music_artist"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Artist"/>
     </LinearLayout>
     
     <FrameLayout
-
         android:id="@+id/frameNativeAd"
         android:layout_width="match_parent"
         android:layout_height="380dp"
@@ -36,6 +45,56 @@
         app:layout_constraintTop_toBottomOf="@id/bar" />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/frameNativeAd"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/progress"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/music_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:text="Title - Artist"
+            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="subtitle system"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text="Currently, the service is in"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:text=" the process of being updated."
+            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 
 
 
@@ -103,6 +162,7 @@
         app:layout_constraintRight_toRightOf="parent"
         >
         <ImageView
+            android:layout_marginLeft="10dp"
             android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -158,6 +218,7 @@
             />
 
         <ImageView
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toTopOf="@id/played"
             android:id="@+id/mirocast"
             android:layout_width="wrap_content"
